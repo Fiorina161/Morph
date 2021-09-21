@@ -29,8 +29,6 @@ namespace Morph
 				Console.Error.WriteLine(USAGE);
 				return 2;
 			}
-
-			Console.ReadKey();
 			return 0;
 		}
 
