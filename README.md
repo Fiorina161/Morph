@@ -9,7 +9,10 @@ environment, but it can be used on any text file, for any purpose.
 
     morph config.var > config.ini
 
-### Sample file
+### Sample file 
+
+*config.var*:
+-------------
 
     [network]
     host={{F1_REMOTE_HOST}}
@@ -17,14 +20,14 @@ environment, but it can be used on any text file, for any purpose.
 
 ### Batch file example
 
-Production.cmd
+*Production.cmd*
 
     @echo off
     set F1_REMOTE_HOST=10.10.10.5
     set F1_REMOTE_PORT=5699
     morph config.var > config.ini
 
-Testing.cmd
+*Testing.cmd*
 
     @echo off
     set F1_REMOTE_HOST=10.10.10.12
