@@ -36,8 +36,12 @@ environment, but it can be used on any text file, for any purpose.
 
 ## Default values
 
-You can provide a default value to be used in case the environment
-variable for a placeholder is not found. For example, in the previous
-example, the *port* placeholder in *config.var* could have been
-specified as `{{PORT|6000}}` and the variable could have been ommited 
-in the batch file.
+You can provide a default value to the variable using a `|` character as in the following example:
+
+```ini
+    [network]
+    host={{HOST|127.0.0.1}}
+    port={{PORT|6000}}
+```
+
+If no environment variable is found for a given variable, its default value will be substituted instead.
