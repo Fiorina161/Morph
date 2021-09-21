@@ -10,6 +10,11 @@ namespace Morph
 
 		private static int Main(string[] args)
 		{
+			if (args.Length != 1)
+			{
+				Console.Error.WriteLine(USAGE);
+				return 1;
+			}
 			try
 			{
 				foreach (var line in File.ReadAllLines(args[0]))
@@ -22,7 +27,7 @@ namespace Morph
 			{
 				Console.Error.WriteLine(e.Message);
 				Console.Error.WriteLine(USAGE);
-				return 1;
+				return 2;
 			}
 
 			Console.ReadKey();
