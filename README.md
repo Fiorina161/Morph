@@ -12,8 +12,8 @@ environment, but it can be used on any text file, for any purpose.
 ### Sample file 
 
 *config.var*:
--------------
 
+-------------
     [network]
     host={{F1_REMOTE_HOST}}
     port={{F1_REMOTE_PORT}}
