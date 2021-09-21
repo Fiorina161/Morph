@@ -7,15 +7,19 @@ environment, but it can be used on any text file, for any purpose.
 
 ## Usage example
 
+```bat
     morph config.var > config.ini
+```
 
 ## Sample file 
 
 *config.var*:
 
+```ini
     [network]
     host={{HOST}}
     port={{PORT}}
+```
 
 ## Batch file example
 
