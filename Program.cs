@@ -6,50 +6,41 @@ namespace Morph
 {
 	internal class Program
 	{
-		private const string USAGE = "Usage: morph <infile>\n";
-
 		private static int Main(string[] args)
 		{
-			if (args.Length != 1)
-			{
-				Console.Error.WriteLine(USAGE);
+			if (args.Length != 1) {
+				Console.Error.WriteLine("Usage: morph <infile>");
 				return 1;
 			}
-			try
-			{
-				foreach (var line in File.ReadAllLines(args[0]))
-				{
-					var tmp = ExpandVariables(line);
-					Console.WriteLine(tmp);
-				}
+
+			try {
+				// Search instances of {{VariableName}} and ask Expand() for
+				// the value to use as replacement.
+				var input = File.ReadAllText(args[0]);
+				var output = Regex.Replace(input, @"\{\{(?<var>.*?)\}\}", Expand);
+				Console.WriteLine(output);
 			}
-			catch (IOException e)
-			{
+			catch (IOException e) {
 				Console.Error.WriteLine(e.Message);
-				Console.Error.WriteLine(USAGE);
-				return 2;
 			}
+
 			return 0;
 		}
 
-		private static string ExpandVariables(string line)
+		private static string Expand(Match match)
 		{
-			return Regex.Replace(line, @"\{\{(?<vname>.*?)\}\}", ExpandVariable);
-		}
-
-		private static string ExpandVariable(Match match)
-		{
-			var name = match.Groups["vname"].Value;
+			var name = match.Groups["var"].Value;
 			var fallback = "";
-			var m = Regex.Match(name, @"(?<name>.*?)\|(?<default>.*?)$",RegexOptions.ExplicitCapture);
-			
-			if (m.Success)
-			{
+
+			// Extract fallback value from variable name if any (name|fallback):
+			var m = Regex.Match(name, @"(?<name>.*?)\|(?<fallback>.*?)$");
+
+			if (m.Success) {
 				name = m.Groups["name"].Value;
-				fallback=m.Groups["default"].Value;
+				fallback = m.Groups["fallback"].Value;
 			}
 
-			return Environment.GetEnvironmentVariable(name)??fallback;
+			return Environment.GetEnvironmentVariable(name) ?? fallback;
 		}
 	}
 }
