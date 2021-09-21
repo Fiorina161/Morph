@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Morph": {
+      "commandName": "Project",
+      "commandLineArgs": "sample.txt"
+    }
+  }
+}
