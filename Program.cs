@@ -1,4 +1,7 @@
-﻿using System;
+﻿/*
+ * Copyright (c) 2021, Alain Bacon <alain@fury161.org>
+ */
+using System;
 using System.IO;
 using System.Text.RegularExpressions;
 
